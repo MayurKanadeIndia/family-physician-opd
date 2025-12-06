@@ -45,8 +45,7 @@ export const MedicationSearch: React.FC<Props> = ({ medications, onChange }) => 
           noon: '',
           night: '',
           beforeAfter: '',
-          period: '',
-          notes: ''
+          period: ''
         }
       ]);
     }
@@ -134,30 +133,45 @@ export const MedicationSearch: React.FC<Props> = ({ medications, onChange }) => 
           <div className="mb-1 grid grid-cols-3 gap-2">
             <div className="flex flex-col gap-1">
               <label className="text-[11px] text-slate-500">Morning</label>
-              <input
+              <select
                 className="rounded-lg border border-slate-200 px-2 py-1 text-xs"
                 value={m.morning}
                 onChange={(e) => updateMed(idx, { morning: e.target.value })}
-                placeholder="e.g. 1"
-              />
+              >
+                {Array.from({ length: 31 }, (_, i) => i).map((n) => (
+                  <option key={n} value={String(n)}>
+                    {n}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="flex flex-col gap-1">
-              <label className="text-[11px] text-slate-500">Noon</label>
-              <input
+              <label className="text-[11px] text-slate-500">Afternoon</label>
+              <select
                 className="rounded-lg border border-slate-200 px-2 py-1 text-xs"
                 value={m.noon}
                 onChange={(e) => updateMed(idx, { noon: e.target.value })}
-                placeholder="e.g. 0"
-              />
+              >
+                {Array.from({ length: 31 }, (_, i) => i).map((n) => (
+                  <option key={n} value={String(n)}>
+                    {n}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="flex flex-col gap-1">
               <label className="text-[11px] text-slate-500">Night</label>
-              <input
+              <select
                 className="rounded-lg border border-slate-200 px-2 py-1 text-xs"
                 value={m.night}
                 onChange={(e) => updateMed(idx, { night: e.target.value })}
-                placeholder="e.g. 1"
-              />
+              >
+                {Array.from({ length: 31 }, (_, i) => i).map((n) => (
+                  <option key={n} value={String(n)}>
+                    {n}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
 
@@ -176,23 +190,19 @@ export const MedicationSearch: React.FC<Props> = ({ medications, onChange }) => 
             </div>
             <div className="flex flex-col gap-1">
               <label className="text-[11px] text-slate-500">Period</label>
-              <input
+              <select
                 className="rounded-lg border border-slate-200 px-2 py-1 text-xs"
                 value={m.period}
                 onChange={(e) => updateMed(idx, { period: e.target.value })}
-                placeholder="e.g. 5 DAYS"
-              />
+              >
+                <option value="">Select days</option>
+                {Array.from({ length: 30 }, (_, i) => i + 1).map((d) => (
+                  <option key={d} value={`${d} Days`}>
+                    {d} Days
+                  </option>
+                ))}
+              </select>
             </div>
-          </div>
-
-          <div className="mt-1 flex flex-col gap-1">
-            <label className="text-[11px] text-slate-500">Notes</label>
-            <input
-              className="rounded-lg border border-slate-200 px-2 py-1 text-xs"
-              value={m.notes || ''}
-              onChange={(e) => updateMed(idx, { notes: e.target.value })}
-              placeholder="Optional note"
-            />
           </div>
         </div>
       ))}

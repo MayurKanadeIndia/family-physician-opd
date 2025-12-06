@@ -8,7 +8,8 @@ const links = [
   { to: '/diagnosis', label: 'Diagnosis' },
   { to: '/medications', label: 'Meds' },
   { to: '/preview', label: 'Preview' },
-  { to: '/history', label: 'History' }
+  { to: '/history', label: 'History' },
+  { to: '/templates', label: 'Templates' }
 ];
 
 export const NavBar: React.FC = () => {

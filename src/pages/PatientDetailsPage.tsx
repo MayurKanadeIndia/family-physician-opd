@@ -38,7 +38,7 @@ export const PatientDetailsPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="mb-2 grid grid-cols-3 gap-2">
+        <div className="mb-2 grid grid-cols-2 gap-2">
           <div className="flex flex-col gap-1">
             <label className="text-[11px] text-slate-500">Age (years)</label>
             <input
@@ -85,14 +85,6 @@ export const PatientDetailsPage: React.FC = () => {
               className="rounded-lg border border-slate-200 px-2 py-1 text-xs"
               value={visit.patient.bloodPressure}
               onChange={(e) => setPatientField('bloodPressure', e.target.value)}
-            />
-          </div>
-          <div className="flex flex-col gap-1">
-            <label className="text-[11px] text-slate-500">Temperature (°C)</label>
-            <input
-              className="rounded-lg border border-slate-200 px-2 py-1 text-xs"
-              value={visit.patient.temperature}
-              onChange={(e) => setPatientField('temperature', e.target.value)}
             />
           </div>
         </div>

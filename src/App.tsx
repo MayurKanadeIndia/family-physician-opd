@@ -8,6 +8,7 @@ import { DiagnosisPage } from './pages/DiagnosisPage';
 import { MedicationsPage } from './pages/MedicationsPage';
 import { PrescriptionPreviewPage } from './pages/PrescriptionPreviewPage';
 import { HistoryPage } from './pages/HistoryPage';
+import { TemplatesPage } from './pages/TemplatesPage';
 
 const App: React.FC = () => {
   return (
@@ -22,6 +23,7 @@ const App: React.FC = () => {
             <Route path="/medications" element={<MedicationsPage />} />
             <Route path="/preview" element={<PrescriptionPreviewPage />} />
             <Route path="/history" element={<HistoryPage />} />
+            <Route path="/templates" element={<TemplatesPage />} />
           </Routes>
         </div>
       </div>

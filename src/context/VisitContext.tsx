@@ -7,7 +7,6 @@ export type Medication = {
   night: string;
   beforeAfter: string;
   period: string;
-  notes?: string;
 };
 
 export type Patient = {
@@ -19,7 +18,6 @@ export type Patient = {
   weight: string;
   bloodPressure: string;
    allergies: string;
-   temperature: string;
 };
 
 export type Visit = {
@@ -53,8 +51,7 @@ const defaultVisit = (): Visit => ({
     phone: '',
     weight: '',
     bloodPressure: '',
-    allergies: '',
-    temperature: ''
+    allergies: ''
   },
   visitDateIso: new Date().toISOString(),
   symptoms: [],
