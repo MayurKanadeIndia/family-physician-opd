@@ -14,28 +14,26 @@ export const PrescriptionPreview: React.FC<Props> = ({ visit }) => {
         <div className="flex justify-between">
           <div className="w-1/2">
             <div>
-              <span className="font-semibold">Patient Name:</span> {fullName || '—'}
+              <span className="font-bold">Patient Name:</span> <span className="font-bold">{fullName || '—'}</span>
             </div>
             <div>
-              <span className="font-semibold">Age:</span> {visit.patient.age || '—'} Years
+              <span className="font-bold">Age:</span> <span className="font-bold">{visit.patient.age || '—'} Years </span>
             </div>
             <div>
-              <span className="font-semibold">Allergic To:</span>{' '}
-              {visit.patient.allergies || 'None'}
+              <span className="font-bold">Allergic To:</span>{' '}
+             <span className="font-bold"> {visit.patient.allergies || 'None'} </span>
             </div>
           </div>
           <div className="w-1/2 text-right">
             <div>
-              <span className="font-semibold">Gender:</span>{' '}
-              {visit.patient.gender || '—'}
+              <span className="font-bold">Gender:</span>{' '}
+             <span className="font-bold"> {visit.patient.gender || '—'} </span>
             </div>
+
             <div>
-              <span className="font-semibold">Phone:</span>{' '}
-              {visit.patient.phone || '—'}
-            </div>
-            <div>
-              <span className="font-semibold">Date:</span>{' '}
-              {new Date(visit.visitDateIso).toLocaleString()}
+              <span className="font-bold">Date:</span>{' '}
+              <span className="font-bold">{new Date(visit.visitDateIso).toLocaleString()}
+                </span>
             </div>
           </div>
         </div>
@@ -44,30 +42,30 @@ export const PrescriptionPreview: React.FC<Props> = ({ visit }) => {
       <div className="mb-2 text-[11px]">
         <div className="flex justify-between">
           <div>
-            <span className="font-semibold">Weight:</span>{' '}
-            {visit.patient.weight || '—'} {visit.patient.weight ? 'kg' : ''}
+            <span className="font-bold">Weight:</span>{' '}
+            <span className="font-bold">{visit.patient.weight || '—'} {visit.patient.weight ? 'kg' : ''} </span>
           </div>
           <div>
-            <span className="font-semibold">BP:</span>{' '}
-            {visit.patient.bloodPressure || '—'} {visit.patient.bloodPressure ? 'mmHg' : ''}
+            <span className="font-bold">BP:</span>{' '}
+            <span className="font-bold">{visit.patient.bloodPressure || '—'} {visit.patient.bloodPressure ? 'mmHg' : ''}</span>
           </div>
         </div>
       </div>
 
       {visit.notes && (
         <div className="mt-3 mb-2 text-[11px]">
-          <div className="font-semibold">Notes:</div>
-          <div>{visit.notes}</div>
+          <div className="font-bold">Note: <></>
+          {visit.notes}</div>
         </div>
       )}
 
-      <div className="mt-4 text-[11px] text-center">
+      <div className="mt-4 text-[11px] text-left">
         {visit.medications.length > 0 && (
-          <div className="mb-2 font-semibold uppercase tracking-wide">Medicines</div>
+          <div className="mb-2 font-bold uppercase tracking-wide">Medicines</div>
         )}
         {visit.medications.map((m, idx) => (
           <div key={idx} className="mb-2">
-            <div className="font-semibold">{idx + 1}. {m.name}</div>
+            <div className="font-bold">{idx + 1}. {m.name}</div>
             {Boolean(m.morning || m.noon || m.night) && (
               <div>
                 Morning: {m.morning || '0'} &nbsp;|&nbsp; Afternoon: {m.noon || '0'} &nbsp;|&nbsp; Night: {m.night || '0'}
@@ -84,10 +82,10 @@ export const PrescriptionPreview: React.FC<Props> = ({ visit }) => {
         ))}
       </div>
 
-      <div className="mt-8 flex justify-end text-[11px]">
-        <div className="text-right">
-          <div className="mb-4">Signature: ____________________________</div>
-          <div className="font-semibold">{visit.doctorName}</div>
+      <div className="mt-8 flex  text-[11px]text-left">
+        <div className="text-left">
+          <div className="text-left">Signature: ____________________________</div>
+          <div className="font-bold">{visit.doctorName}</div>
         </div>
       </div>
     </div>
