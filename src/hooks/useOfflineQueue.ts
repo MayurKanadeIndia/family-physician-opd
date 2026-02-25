@@ -1,34 +1,18 @@
 import { useEffect, useState } from 'react';
 import { savePatientVisit } from '../services/api';
 
-const QUEUE_KEY = 'opd_pending_visits_v2';
-
-function loadQueue(): any[] {
-  try {
-    const s = localStorage.getItem(QUEUE_KEY);
-    if (!s) return [];
-    return JSON.parse(s);
-  } catch {
-    return [];
-  }
-}
-
-function saveQueue(q: any[]) {
-  localStorage.setItem(QUEUE_KEY, JSON.stringify(q));
-}
+let queueInMemory: any[] = [];
 
 export function useOfflineQueue() {
-  const [pendingCount, setPendingCount] = useState(() => loadQueue().length);
+  const [pendingCount, setPendingCount] = useState(() => queueInMemory.length);
 
   const enqueue = (visit: any) => {
-    const q = loadQueue();
-    q.push(visit);
-    saveQueue(q);
-    setPendingCount(q.length);
+    queueInMemory = [...queueInMemory, visit];
+    setPendingCount(queueInMemory.length);
   };
 
   const flush = async () => {
-    const q = loadQueue();
+    const q = queueInMemory;
     if (!q.length) return;
     const remaining: any[] = [];
     for (const v of q) {
@@ -38,8 +22,8 @@ export function useOfflineQueue() {
         remaining.push(v);
       }
     }
-    saveQueue(remaining);
-    setPendingCount(remaining.length);
+    queueInMemory = remaining;
+    setPendingCount(queueInMemory.length);
   };
 
   useEffect(() => {

@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media print {
+  @page {
+    margin: 0;
+  }
+
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  .print-sheet {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 40mm);
+    padding-top: 20mm;
+    padding-bottom: 20mm;
+  }
+
+  .print-sheet-inner {
+    width: 100%;
+    max-width: 180mm;
+  }
+}

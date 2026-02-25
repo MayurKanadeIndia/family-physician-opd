@@ -38,8 +38,6 @@ type VisitContextValue = {
   reset: () => void;
 };
 
-const STORAGE_KEY = 'opd_current_visit_v2';
-
 const defaultVisit = (): Visit => ({
   doctorName: 'Dr. Hemant Huilgoalkar',
   clinicName: 'Sai Clinic',
@@ -63,17 +61,10 @@ const defaultVisit = (): Visit => ({
 const VisitContext = createContext<VisitContextValue | undefined>(undefined);
 
 export const VisitProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [visit, setVisitState] = useState<Visit>(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) return JSON.parse(stored);
-    } catch {}
-    return defaultVisit();
-  });
+  const [visit, setVisitState] = useState<Visit>(() => defaultVisit());
 
   const setVisit = (v: Visit) => {
     setVisitState(v);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(v));
   };
 
   const update = (patch: Partial<Visit>) => {
